@@ -21,6 +21,8 @@ namespace pieshop.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
+            
+
             var pies = _pieRepository.GetAllPies().OrderBy(p => p.Name);
 
             var homeViewModel = new HomeViewModel()
