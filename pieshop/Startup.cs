@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using pieshop.Models;
 
 namespace pieshop
 {
@@ -21,6 +22,9 @@ namespace pieshop
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add DI Services
+            services.AddTransient<IPieRepository, MockPieRepository>();
+
             // Add Framework services
             services.AddMvc();
         }
@@ -31,7 +35,7 @@ namespace pieshop
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UserStatusCodePages();
+                app.UseStatusCodePages();
             }
             else
             {

@@ -10,28 +10,21 @@ namespace pieshop.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IPieRepository _pieRepository;
+
+        public HomeController(IPieRepository pieRepository)
+        {
+            _pieRepository = pieRepository;
+        }
+
+        // GET: /<controller>/
         public IActionResult Index()
         {
-            return View();
-        }
+            ViewBag.Title = "Pie Overview"; 
 
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
+            var pies = _pieRepository.GetAllPies().OrderBy(p => p.Name);
 
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(pies);
         }
     }
 }
