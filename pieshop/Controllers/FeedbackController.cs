@@ -1,8 +1,10 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using pieshop.Models;
 
 namespace pieshop.Controllers
 {
+    [Authorize]
     public class FeedbackController: Controller
     {
         private readonly IFeedbackRepository _feedbackRepository;
