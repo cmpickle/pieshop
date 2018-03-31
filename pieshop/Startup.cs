@@ -28,6 +28,7 @@ namespace pieshop
 
             // Add DI Services
             services.AddTransient<IPieRepository, PieRepository>();
+            services.AddTransient<IFeedbackRepository, FeedbackRepository>();
 
             // Add Framework services
             services.AddMvc();
